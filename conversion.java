@@ -8,7 +8,7 @@
  @version 2.0    June 2015
  @version 2.1    January 2020
   ********************************************************************* */
-//@author Kosei Matsuda & Kevin Nguyen
+//Names : Kevin Nguyen and Kosei Matsuda
 // Import Servlet Libraries
 
 
@@ -30,7 +30,6 @@ public class conversion
         float num1;
         num1 = Float.valueOf (3);
         num1 = (float) (num1 * 2.54);
-        System.out.printf("NUM1 = %f ", num1);
         while(true)
         {
             choice = printMenu();
@@ -172,11 +171,45 @@ public class conversion
             }
             else if (choice.equals("9"))
             {
+                System.out.println("1. Kelvin to Celsius \n2. Celsius to Kelvin ");
+                choice2 = s.next();
+                if (choice2.equals("1"))
+                {
+                    System.out.printf("This is the converted value: " + decimalPlace() + "%n",convertKel2Cel(s.next()));
+                }
+                else if (choice2.equals("2"))
+                {
+                    System.out.printf("This is the converted value: " + decimalPlace() + "%n",convertCel2Kel(s.next()));
+                }
+                else
+                {
+                    System.out.println("Please input either 1 or 2");
+                }
+            }
+            else if (choice.equals("10"))
+            {
+                System.out.println("1. Miles per gallon to Kilometers per Liter \n2. Kilometers per liter to Miles per gallon");
+                choice2 = s.next();
+                if (choice2.equals("1"))
+                {
+                    System.out.printf("This is the converted value: " + decimalPlace() + "%n",convertMpg2Kpl(s.next()));
+                }
+                else if (choice2.equals("2"))
+                {
+                    System.out.printf("This is the converted value: " + decimalPlace() + "%n",convertKpl2Mpg(s.next()));
+                }
+                else
+                {
+                    System.out.println("Please input either 1 or 2");
+                }
+            }
+            else if (choice.equals("11"))
+            {
                   System.exit(0);
             }
             else
             {
-                System.out.println("Please give a valid input. (1 through 9");
+                System.out.println("Please give a valid input. (1 through 11");
             }
         }
     }
@@ -185,7 +218,7 @@ public class conversion
      *  14 methods, 2 for each pair of units
      ********************************************************* */
      static String printMenu(){
-        System.out.println("What type of conversion would you like to make? Input the correlating number. \n 1. Temperature \n 2. Inch/Centimeter  \n 3. Feet/Meter \n 4. Mile/Kilometer \n 5. Gallon/Liter \n 6. Ounce/Gram \n 7. Pound/Kilogram \n 8. Miles Per Hour/Kilometers Per Hour \n 9. Exit");
+        System.out.println("What type of conversion would you like to make? Input the correlating number. \n 1. Temperature \n 2. Inch/Centimeter  \n 3. Feet/Meter \n 4. Mile/Kilometer \n 5. Gallon/Liter \n 6. Ounce/Gram \n 7. Pound/Kilogram \n 8. Miles Per Hour/Kilometers Per Hour \n 9. Kelvin to Celsius/Celsius to Kelvin \n 10. Exit");
         Scanner scan = new Scanner (System.in);
         String s = scan.next();
         return s;
@@ -315,4 +348,30 @@ public class conversion
         num1 = (Float.valueOf (kphAsStr));
         return (float) (num1 * 0.621371);
     }
+     
+     static float convertKel2Cel (String kphAsStr)
+     {  // Convert kelvin to celsius
+         float num1;
+         num1 = (Float.valueOf (kphAsStr));
+         return (float) (num1 - 273.15);
+     }
+     
+     static float convertCel2Kel (String kphAsStr)
+     {  // Convert celsius to kelvin
+         float num1;
+         num1 = (Float.valueOf (kphAsStr));
+         return (float) (num1 + 273.15);
+     }
+     public static float convertMpg2Kpl (String kphAsStr)
+     {  // Convert mpg to kpl
+         float num1;
+         num1 = (Float.valueOf (kphAsStr));
+         return (float) (num1 * 0.425144);
+     }
+     public static float convertKpl2Mpg (String kphAsStr)
+     {  // Convert kpl to mpg
+         float num1;
+         num1 = (Float.valueOf (kphAsStr));
+         return (float) (num1 * 2.35215);
+     }
 }
